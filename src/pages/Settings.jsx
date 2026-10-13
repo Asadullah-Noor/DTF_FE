@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import api, { errMsg } from '../api/client';
 import { useSettings } from '../hooks/useSettings';
-import { Card, Field, Button, Notice, inputCls } from '../components/ui';
-
+import { Card, Field, Button, Notice, Modal, inputCls } from '../components/ui';
 export default function Settings() {
   const qc = useQueryClient();
   const { data: s } = useSettings();
@@ -30,15 +29,13 @@ export default function Settings() {
     onSuccess: () => { qc.invalidateQueries({ queryKey: ['settings'] }); setLogoMsg({ type: 'ok', text: 'Logo updated' }); },
     onError: (e) => setLogoMsg({ type: 'error', text: errMsg(e) }),
   });
-
+  onSuccess: () => {
+  pw.reset();
+  setPwOpen(false);
+  setPwMsg({ type: 'ok', text: 'Password changed successfully' });
+}
   const pw = useForm();
-  const changePw = useMutation({
-    mutationFn: (v) => api.post('/auth/change-password', { currentPassword: v.currentPassword, newPassword: v.newPassword }),
-    onSuccess: () => { pw.reset(); setPwMsg({ type: 'ok', text: 'Password changed successfully' }); },
-    onError: (e) => setPwMsg({ type: 'error', text: errMsg(e) }),
-  });
-
-  return (
+   return (
     <div className="mx-auto max-w-2xl space-y-5">
       <h1 className="text-2xl font-bold text-navy">Settings</h1>
 
@@ -67,19 +64,7 @@ export default function Settings() {
         {logoMsg && <div className="mt-3"><Notice type={logoMsg.type}>{logoMsg.text}</Notice></div>}
       </Card>
 
-      <Card>
-        <h2 className="mb-3 font-semibold text-navy">Change password</h2>
-        <form onSubmit={pw.handleSubmit((v) => { setPwMsg(null); changePw.mutate(v); })} className="space-y-3">
-          <Field label="Current password" error={pw.formState.errors.currentPassword && 'Enter your current password'}>
-            <input type="password" autoComplete="current-password" className={inputCls} {...pw.register('currentPassword', { required: true })} />
-          </Field>
-          <Field label="New password" error={pw.formState.errors.newPassword && 'New password must be at least 8 characters'}>
-            <input type="password" autoComplete="new-password" className={inputCls} {...pw.register('newPassword', { required: true, minLength: 8 })} />
-          </Field>
-          {pwMsg && <Notice type={pwMsg.type}>{pwMsg.text}</Notice>}
-          <Button type="submit" disabled={changePw.isPending}>{changePw.isPending ? 'Changing...' : 'Change password'}</Button>
-        </form>
-      </Card>
+
     </div>
   );
 }
