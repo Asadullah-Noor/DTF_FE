@@ -2,9 +2,11 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
-import Placeholder from './components/Placeholder';
 import Settings from './pages/Settings';
 import Parties from './pages/Parties';
+import Statement from './pages/Statement';
+import Ledger from './pages/Ledger';
+import ImportExport from './pages/ImportExport';
 
 export default function App() {
   return (
@@ -15,9 +17,9 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/parties" replace />} />
           <Route path="/parties" element={<Parties />} />
-          <Route path="/parties/:id" element={<Placeholder title="Party statement (next step)" />} />
-          <Route path="/ledger" element={<Placeholder title="Ledger" />} />
-          <Route path="/import-export" element={<Placeholder title="Import / Export" />} />
+          <Route path="/parties/:id" element={<Statement />} />
+          <Route path="/ledger" element={<Ledger />} />
+          <Route path="/import-export" element={<ImportExport />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
