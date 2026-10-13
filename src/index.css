@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0b3a6b;
+  --color-navy-dark: #082a4f;
+  --color-brand-cyan: #00a8f0;
+  --color-brand-magenta: #e6287e;
+  --color-brand-yellow: #f5c518;
+  --color-ink: #1f2933;
+  --color-surface: #f5f7fa;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Invoices are download-only: hide everything if someone tries to print */
+@media print {
+  html, body { display: none !important; }
+}
