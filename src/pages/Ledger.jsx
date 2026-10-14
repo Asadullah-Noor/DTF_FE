@@ -182,7 +182,7 @@ export default function Ledger() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-navy">Ledger</h1>
+      <h1 className="text-2xl font-bold text-navy">Debit Credit</h1>
         <Button onClick={() => setEditing('new')}>+ Add entry</Button>
       </div>
 
@@ -294,7 +294,7 @@ export default function Ledger() {
       )}
 
       {editing && (
-        <Modal title={editing === 'new' ? 'Add ledger entry' : 'Edit entry'} onClose={() => setEditing(null)}>
+<Modal title={editing === 'new' ? 'Add debit/credit entry' : 'Edit entry'} onClose={() => setEditing(null)}>
           <EntryForm entry={editing === 'new' ? null : editing} parties={parties} onDone={() => setEditing(null)} />
         </Modal>
       )}

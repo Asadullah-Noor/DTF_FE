@@ -4,12 +4,16 @@ import Logo from './Logo';
 import { useAuth } from '../context/AuthContext';
 
 const links = [
+  { to: '/', label: 'Dashboard' },
   { to: '/parties', label: 'Parties' },
-  { to: '/ledger', label: 'Ledger' },
+  { to: '/ledger', label: 'Debit Credit' },
+  { to: '/invoices', label: 'Invoices' },
+  { to: '/payments', label: 'Payments' },
+  { to: '/expenses', label: 'Expenses' },
+  { to: '/reports', label: 'Reports' },
   { to: '/import-export', label: 'Import / Export' },
   { to: '/settings', label: 'Settings' },
 ];
-
 export default function Layout() {
   const [open, setOpen] = useState(false);
   const { logout } = useAuth();
@@ -32,7 +36,7 @@ export default function Layout() {
       </div>
       <nav className="flex-1 space-y-1 p-3">
         {links.map((l) => (
-          <NavLink key={l.to} to={l.to} className={navItem} onClick={() => setOpen(false)}>
+          <NavLink key={l.to} to={l.to} end={l.to === '/'} className={navItem} onClick={() => setOpen(false)}>
             {l.label}
           </NavLink>
         ))}

@@ -105,9 +105,10 @@ export default function Parties() {
                     {p.balanceLabel}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right">
-                  <button onClick={() => setEditing(p)} className="text-sm text-navy hover:underline">Edit</button>
-                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-right">
+  <Link to={`/parties/${p._id}`} className="mr-3 text-sm font-medium text-navy hover:underline">Statement</Link>
+  <button onClick={() => setEditing(p)} className="text-sm text-gray-600 hover:underline">Edit</button>
+</td>
               </tr>
             ))}
           </tbody>
