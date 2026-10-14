@@ -42,7 +42,14 @@ export default function Statement() {
       setDlError('Download failed. Please try again.');
     }
   };
-
+const downloadPdf = async () => {
+  setDlError('');
+  try {
+    await downloadFile(`/parties/${id}/statement/pdf`, { from: from || undefined, to: to || undefined }, 'statement.pdf');
+  } catch {
+    setDlError('Download failed. Please try again.');
+  }
+};
   if (isLoading) return <p className="text-gray-500">Loading...</p>;
   if (isError || !st) return <Notice>Could not load this party.</Notice>;
 
