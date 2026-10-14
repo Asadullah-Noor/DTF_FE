@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const TOKEN_KEY = 'waqas_token';
-
-const api = axios.create({ baseURL: '/api' });
+const base = import.meta.env.VITE_API_URL || '';
+const api = axios.create({ baseURL: base + '/api' });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem(TOKEN_KEY);
