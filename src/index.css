@@ -13,10 +13,18 @@
 body {
   background: var(--color-surface);
   color: var(--color-ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 /* Invoices are download-only: hide everything if someone tries to print */
 @media print {
-  html, body { display: none !important; }
+  html,
+  body {
+    display: none !important;
+  }
 }

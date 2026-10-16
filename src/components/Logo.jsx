@@ -1,12 +1,5 @@
-import { useSettings } from '../hooks/useSettings';
+   import { BUSINESS } from '../config/business';
 
-export default function Logo({ className = 'h-10' }) {
-  const { data: s } = useSettings();
-  return (
-    <img
-      src={s?.logoUrl || '/logo.png'}
-      alt={s?.businessName || 'Waqas DTF Printing'}
-      className={`w-auto ${className}`}
-    />
-  );
-}
+   export default function Logo({ className = 'h-10' }) {
+     return <img src="/logo.png" alt={BUSINESS.name} className={`w-auto ${className}`} />;
+   }

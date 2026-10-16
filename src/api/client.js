@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const TOKEN_KEY = 'waqas_token';
-const base = import.meta.env.VITE_API_URL || '';
-const api = axios.create({ baseURL: base + '/api' });
+export const TOKEN_KEY = "waqas_token";
+const base = import.meta.env.VITE_API_URL || "";
+const api = axios.create({ baseURL: base + "/api" });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem(TOKEN_KEY);
@@ -14,15 +14,18 @@ api.interceptors.response.use(
   (res) => res,
   (err) => {
     // token expire ho gaya to login par bhej do
-    if (err.response?.status === 401 && !err.config.url.includes('/auth/login')) {
+    if (
+      err.response?.status === 401 &&
+      !err.config.url.includes("/auth/login")
+    ) {
       localStorage.removeItem(TOKEN_KEY);
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 export const errMsg = (err) =>
-  err.response?.data?.message || err.message || 'Something went wrong';
+  err.response?.data?.message || err.message || "Something went wrong";
 
 export default api;

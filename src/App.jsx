@@ -1,19 +1,18 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Layout from './components/Layout';
-import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './pages/Dashboard';
-import Parties from './pages/Parties';
-import Statement from './pages/Statement';
-import Ledger from './pages/Ledger';
-import Invoices from './pages/Invoices';
-import InvoiceForm from './pages/InvoiceForm';
-import InvoiceDetail from './pages/InvoiceDetail';
-import Payments from './pages/Payments';
-import Expenses from './pages/Expenses';
-import Reports from './pages/Reports';
-import ImportExport from './pages/ImportExport';
-import Settings from './pages/Settings';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Parties from "./pages/Parties";
+import Statement from "./pages/Statement";
+import Ledger from "./pages/Ledger";
+import Invoices from "./pages/Invoices";
+import InvoiceForm from "./pages/InvoiceForm";
+import InvoiceDetail from "./pages/InvoiceDetail";
+import Payments from "./pages/Payments";
+import Expenses from "./pages/Expenses";
+import Reports from "./pages/Reports";
+import ImportExport from "./pages/ImportExport";
 
 export default function App() {
   return (
@@ -34,7 +33,6 @@ export default function App() {
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/import-export" element={<ImportExport />} />
-          <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
 
